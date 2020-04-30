@@ -1,20 +1,20 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.sort;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.BaseSearchModel;
+import cc.sylar.elasticsearch.proxy.beans.search.request.BaseModel;
 
 /**
  * @author sylar
  * @Description:
  * @date 2019-02-25 11:27
  */
-public class BaseSortModel<V> extends BaseSearchModel<V> {
+public abstract class BaseSortModel extends BaseModel {
     /**
      * sort model
      */
     private SortModel sortModel;
 
-    BaseSortModel(BaseSortModel.Builder<?, V> builder) {
-        super(builder);
+    <T extends BaseSortMemberBuilder<T>> BaseSortModel(BaseSortMemberBuilder<T> builder) {
+        super(builder.name);
         sortModel = builder.sortModel;
     }
 
@@ -22,18 +22,27 @@ public class BaseSortModel<V> extends BaseSearchModel<V> {
         return sortModel;
     }
 
-    public static class Builder<T extends BaseSortModel.Builder<T, V>, V> extends BaseSearchModel.Builder<T, V> {
+    public static abstract class BaseSortMemberBuilder<T extends BaseSortMemberBuilder<T>> {
+
+        protected String name;
 
         protected SortModel sortModel;
 
-        public T sortModel(SortModel val) {
-            sortModel = val;
-            return super.self();
+        protected T name(String name) {
+            this.name = name;
+            return (T) this;
         }
 
-        @Override
-        public BaseSortModel build() {
-            return new BaseSortModel<>(this);
+        public T sortModel(SortModel val) {
+            sortModel = val;
+            return (T) this;
         }
+
+        /**
+         * 构建具体BaseSortModel的子类实例
+         * @return
+         */
+        public abstract BaseSortModel build();
     }
+
 }

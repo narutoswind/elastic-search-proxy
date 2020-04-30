@@ -21,3 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+# IntelliJ project files
+.idea
+.idea/*
+*/.idea/
+*.iml
+out
+gen
+target
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+/bin/

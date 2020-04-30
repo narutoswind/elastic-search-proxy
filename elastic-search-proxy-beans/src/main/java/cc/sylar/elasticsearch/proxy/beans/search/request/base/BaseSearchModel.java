@@ -15,7 +15,7 @@ public class BaseSearchModel<V> extends BaseModel {
      */
     private V value;
 
-    protected BaseSearchModel(Builder<?, V> builder) {
+    protected <T extends MemberBuilder> BaseSearchModel(MemberBuilder<T, V> builder) {
         super(builder.name);
         this.value = builder.value;
     }
@@ -24,7 +24,12 @@ public class BaseSearchModel<V> extends BaseModel {
         return value;
     }
 
-    public static class Builder<T extends Builder<T,V>, V> {
+
+    public static class Builder<V>  extends MemberBuilder<Builder, V>{
+
+    }
+
+    protected static class MemberBuilder<T extends MemberBuilder, V> {
 
         public String name;
 

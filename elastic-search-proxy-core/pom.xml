@@ -7,7 +7,7 @@
   <groupId>cc.sylar</groupId>
   <artifactId>elastic-search-proxy-core</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>elastic-search-proxy-core</name>
 

@@ -5,17 +5,28 @@ package cc.sylar.elasticsearch.proxy.beans.search.request.base.sort;
  * @Description:
  * @date 2020/4/28 11:52 下午
  */
-public class NoneParameterScriptModel extends BaseSortModel<Void> {
+public class NoneParameterScriptModel extends BaseSortModel {
 
-    private NoneParameterScriptModel(Builder builder) {
+    private <T extends NoneParameterScriptMemberBuilder<T>> NoneParameterScriptModel(NoneParameterScriptMemberBuilder<T> builder) {
         super(builder);
     }
 
-    public static final class Builder extends BaseSortModel.Builder<Builder, Void> {
+    public static NoneParameterScriptBuilder newBuilder() {
+        return new NoneParameterScriptBuilder();
+    }
 
-        @Override
-        public Builder value(Void val) {
-            return self();
+    public static class NoneParameterScriptBuilder extends NoneParameterScriptMemberBuilder<NoneParameterScriptBuilder> {
+        private NoneParameterScriptBuilder() {
+        }
+    }
+
+
+    protected static class NoneParameterScriptMemberBuilder<T extends NoneParameterScriptMemberBuilder<T>> extends
+            BaseSortModel.BaseSortMemberBuilder<T> {
+
+        public T scriptId(String scriptId) {
+            super.name(scriptId);
+            return (T) this;
         }
 
         @Override
@@ -23,5 +34,4 @@ public class NoneParameterScriptModel extends BaseSortModel<Void> {
             return new NoneParameterScriptModel(this);
         }
     }
-
 }

@@ -8,7 +8,7 @@ import java.util.Objects;
  * @Description:
  * @date 2020/4/27 11:59 下午
  */
-public class BaseModel implements Serializable {
+public abstract class BaseModel implements Serializable {
     /**
      * name of es mapping filed or script id
      */
