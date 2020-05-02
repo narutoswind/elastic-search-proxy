@@ -1,8 +1,5 @@
 package cc.sylar.elasticsearch.proxy.core.search.filter;
 
-import com.ymm.cargo.es.api.base.exception.EsRecallException;
-import com.ymm.cargo.es.api.request.SearchBaseRequest;
-
 import java.util.ArrayList;
 import java.util.List;
 

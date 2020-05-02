@@ -14,6 +14,8 @@
         <module>elastic-search-proxy-core</module>
         <module>elastic-search-proxy-sharding</module>
         <module>elastic-search-proxy-config</module>
+        <module>elastic-search-proxy-example</module>
+        <module>elastic-search-proxy-autoconfigure</module>
     </modules>
 
     <properties>
