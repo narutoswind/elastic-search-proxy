@@ -15,8 +15,8 @@ a simple proxy for elastic search.can multi cluster shunt by search scenario.als
 ## elastic-search-proxy-core
 - 依赖  
     elastic-search-proxy-beans   
-    elastic-search-proxy-config 
-    elastic-search-proxy-sharding(可选)
+    elastic-search-proxy-config    
+    elastic-search-proxy-sharding(可选)    
     elastic-search-proxy-limit(可选)
 - 代理核心逻辑。代理上下文，整体集群、负载、限流组件初始化入口
 - 查询模型入参校验
