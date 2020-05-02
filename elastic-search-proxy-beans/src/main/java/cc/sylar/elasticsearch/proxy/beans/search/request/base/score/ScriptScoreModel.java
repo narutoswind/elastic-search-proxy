@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class ScriptScoreModel extends BaseScoreModel<Map<String, Object>> {
 
-    private ScriptScoreModel(Builder<?, Map<String, Object>> builder) {
+    private ScriptScoreModel(Builder<Map<String, Object>> builder) {
         super(builder);
     }
 }

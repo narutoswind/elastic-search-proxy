@@ -19,8 +19,14 @@ public class SearchModelBuilder implements Serializable {
     private List<AbstractSearchModel> mustSearchModelList = new ArrayList<>();
     private List<AbstractSearchModel> mustNotSearchModelList = new ArrayList<>();
 
+    private SearchModelBuilder() {
+    }
 
-    public SearchModelBuilder should(AbstractSearchModel searchModel){
+    public static SearchModelBuilder newBuilder() {
+        return new SearchModelBuilder();
+    }
+
+    public SearchModelBuilder should(AbstractSearchModel searchModel) {
         if (searchModel == null) {
             return this;
         }
@@ -28,7 +34,7 @@ public class SearchModelBuilder implements Serializable {
         return this;
     }
 
-    public SearchModelBuilder must(AbstractSearchModel searchModel){
+    public SearchModelBuilder must(AbstractSearchModel searchModel) {
         if (searchModel == null) {
             return this;
         }
@@ -36,7 +42,7 @@ public class SearchModelBuilder implements Serializable {
         return this;
     }
 
-    public SearchModelBuilder mustNot(AbstractSearchModel searchModel){
+    public SearchModelBuilder mustNot(AbstractSearchModel searchModel) {
         if (searchModel == null) {
             return this;
         }
@@ -44,7 +50,7 @@ public class SearchModelBuilder implements Serializable {
         return this;
     }
 
-    public boolean isEmptySearch(){
+    public boolean isEmptySearch() {
         return CollectionUtils.isEmpty(shouldSearchModelList)
                 && CollectionUtils.isEmpty(mustSearchModelList)
                 && CollectionUtils.isEmpty(mustNotSearchModelList);

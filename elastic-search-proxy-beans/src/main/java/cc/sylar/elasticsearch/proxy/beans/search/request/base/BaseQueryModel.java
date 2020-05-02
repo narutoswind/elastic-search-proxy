@@ -9,13 +9,13 @@ import java.util.Objects;
  * @Description: 匹配过滤
  * @date 2018/10/31 5:09 PM
  */
-public class BaseSearchModel<V> extends BaseModel {
+public class BaseQueryModel<V> extends BaseModel {
     /**
      * value
      */
     private V value;
 
-    protected <T extends MemberBuilder> BaseSearchModel(MemberBuilder<T, V> builder) {
+    protected <T extends MemberBuilder> BaseQueryModel(MemberBuilder<T, V> builder) {
         super(builder.name);
         this.value = builder.value;
     }
@@ -53,8 +53,8 @@ public class BaseSearchModel<V> extends BaseModel {
             return (T) this;
         }
 
-        public BaseSearchModel build() {
-            return new BaseSearchModel<>(this);
+        public BaseQueryModel build() {
+            return new BaseQueryModel<>(this);
         }
     }
 
@@ -63,10 +63,10 @@ public class BaseSearchModel<V> extends BaseModel {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof BaseSearchModel)) {
+        if (!(o instanceof BaseQueryModel)) {
             return false;
         }
-        BaseSearchModel<?> that = (BaseSearchModel<?>) o;
+        BaseQueryModel<?> that = (BaseQueryModel<?>) o;
         return Objects.equals(value, that.value);
     }
 

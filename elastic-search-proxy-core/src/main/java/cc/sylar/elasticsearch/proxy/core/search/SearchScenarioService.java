@@ -1,31 +1,30 @@
 package cc.sylar.elasticsearch.proxy.core.search;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.MultiSearchScenarioRequest;
-import cc.sylar.elasticsearch.proxy.beans.search.request.SearchScenarioRequest;
-import cc.sylar.elasticsearch.proxy.beans.search.response.common.MultiBaseSearchResponse;
-import cc.sylar.elasticsearch.proxy.beans.search.response.common.SingleBaseSearchResponse;
+import cc.sylar.elasticsearch.proxy.beans.context.SearchContext;
+import cc.sylar.elasticsearch.proxy.beans.search.response.BaseSearchResponse;
+
+import java.util.Map;
 
 /**
  * @author sylar
- * @Description: search cargoes with Scenario
+ * @Description:
  * @date 2018/11/15 11:07 AM
  */
 public interface SearchScenarioService {
 
     /**
      * 单查询信息
-     * warning:在查询结果集返回 null 的时候,T 可能会返回 null ,调用方法自行处理。
-     * @see SingleBaseSearchResponse
-     * @param searchScenarioRequest
+     * @see BaseSearchResponse
+     * @param searchContext
      * @return
      */
-    SingleBaseSearchResponse search(SearchScenarioRequest searchScenarioRequest);
+    BaseSearchResponse search(SearchContext searchContext);
 
     /**
      * 多路查询
-     * @see MultiBaseSearchResponse
+     * @see BaseSearchResponse
      * @param multiSearchScenarioRequest
      * @return
      */
-    MultiBaseSearchResponse multiSearch(MultiSearchScenarioRequest multiSearchScenarioRequest);
+    Map<String, BaseSearchResponse> multiSearch(MultiSearchScenarioRequest multiSearchScenarioRequest);
 }

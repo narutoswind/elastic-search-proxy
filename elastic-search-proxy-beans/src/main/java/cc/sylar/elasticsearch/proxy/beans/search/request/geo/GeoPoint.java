@@ -17,16 +17,9 @@ public class GeoPoint implements Serializable {
      */
     private Double lat;
 
-    public GeoPoint(){}
-
-    public GeoPoint(Double lon, Double lat) {
-        this.lon = lon;
-        this.lat = lat;
-    }
-
     private GeoPoint(Builder builder) {
-        setLon(builder.lon);
-        setLat(builder.lat);
+        this.lon = builder.lon;
+        this.lat = builder.lat;
     }
 
     public static Builder newBuilder() {
@@ -37,18 +30,9 @@ public class GeoPoint implements Serializable {
         return lon;
     }
 
-    public void setLon(Double lon) {
-        this.lon = lon;
-    }
-
     public Double getLat() {
         return lat;
     }
-
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
 
     public static final class Builder {
         private Double lon;

@@ -1,6 +1,8 @@
 package cc.sylar.elasticsearch.proxy.core.search.filter;
 
 
+import cc.sylar.elasticsearch.proxy.beans.context.SearchContext;
+
 /**
  * @author sylar
  * @Description:
@@ -8,7 +10,7 @@ package cc.sylar.elasticsearch.proxy.core.search.filter;
  */
 public class BaseRequestFilter implements SearchRequestFilter {
     @Override
-    public void filterRequest(SearchBaseRequest searchBaseRequest) throws EsRecallException {
+    public void filterRequest(SearchContext searchBaseRequest) throws EsRecallException {
         if (searchBaseRequest == null) {
             throw new EsRecallException("illegal argument value for searchRequest, SearchRequest can't be null");
         }

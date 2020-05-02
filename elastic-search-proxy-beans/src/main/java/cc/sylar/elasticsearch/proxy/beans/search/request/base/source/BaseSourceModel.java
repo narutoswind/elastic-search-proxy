@@ -7,24 +7,17 @@ import cc.sylar.elasticsearch.proxy.beans.search.request.BaseModel;
  * @Description:
  * @date 2019-04-09 09:57
  */
-public class BaseSourceModel extends BaseModel {
+public abstract class BaseSourceModel extends BaseModel {
 
-    protected BaseSourceModel(Builder builder) {
-        super(builder.fieldName);
+    <T extends MemberBuilder> BaseSourceModel(MemberBuilder<T> builder) {
+        super(builder.name);
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
+    protected abstract static class MemberBuilder<T extends MemberBuilder> {
+        private String name;
 
-    public static class Builder<T extends Builder> {
-        private String fieldName;
-
-        protected Builder() {
-        }
-
-        public T fieldName(String val) {
-            fieldName = val;
+        protected T name(String name) {
+            this.name = name;
             return self();
         }
 
@@ -32,8 +25,10 @@ public class BaseSourceModel extends BaseModel {
             return (T) this;
         }
 
-        public BaseSourceModel build() {
-            return new BaseSourceModel(this);
-        }
+        /**
+         * 构建对应model
+         * @return
+         */
+        public abstract BaseSourceModel build();
     }
 }

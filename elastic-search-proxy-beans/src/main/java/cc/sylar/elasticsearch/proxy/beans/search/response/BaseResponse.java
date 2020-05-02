@@ -7,59 +7,41 @@ import java.io.Serializable;
  * @Description:
  * @date 2018/10/22 5:04 PM
  */
-public class BaseResponse<T extends BaseSearchResponse> implements Serializable {
-    private Boolean success;
+public class BaseResponse<T> implements Serializable {
+    private boolean success;
     private Integer code;
     private String message;
     private T result;
 
-    public BaseResponse(){}
-
     private BaseResponse(Builder<T> builder) {
-        setSuccess(builder.success);
-        setCode(builder.code);
-        setMessage(builder.message);
-        setResult(builder.result);
+        this.success = builder.success;
+        this.code = builder.code;
+        this.message = builder.message;
+        this.result = builder.result;
     }
 
     public static BaseResponse.Builder newBuilder() {
         return new BaseResponse.Builder();
     }
 
-    public Boolean getSuccess() {
+    public boolean isSuccess() {
         return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
     }
 
     public Integer getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public T getResult() {
         return result;
     }
 
-    public void setResult(T result) {
-        this.result = result;
-    }
-
-    public static final class Builder<T extends BaseSearchResponse> {
-        private Boolean success;
+    public static final class Builder<T> {
+        private boolean success;
         private Integer code;
         private String message;
         private T result;
@@ -67,28 +49,28 @@ public class BaseResponse<T extends BaseSearchResponse> implements Serializable 
         private Builder() {
         }
 
-        public Builder success(Boolean val) {
-            success = val;
+        public Builder success(boolean success) {
+            this.success = success;
             return this;
         }
 
-        public Builder code(Integer val) {
-            code = val;
+        public Builder code(Integer code) {
+            this.code = code;
             return this;
         }
 
-        public Builder message(String val) {
-            message = val;
+        public Builder message(String message) {
+            this.message = message;
             return this;
         }
 
-        public Builder result(T val) {
-            result = val;
+        public Builder result(T result) {
+            this.result = result;
             return this;
         }
 
         public BaseResponse<T> build() {
-            return new BaseResponse(this);
+            return new BaseResponse<>(this);
         }
     }
 
