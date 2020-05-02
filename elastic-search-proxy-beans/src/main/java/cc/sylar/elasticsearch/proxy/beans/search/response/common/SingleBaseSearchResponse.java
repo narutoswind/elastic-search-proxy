@@ -17,10 +17,7 @@ public class SingleBaseSearchResponse<V> extends BaseSearchResponse implements S
 
     private PageResult pageResult;
 
-    public SingleBaseSearchResponse() {
-    }
-
-    protected <T extends Builder> SingleBaseSearchResponse(Builder<T, V> builder) {
+    private  <T extends Builder> SingleBaseSearchResponse(Builder<T, V> builder) {
         pageResult = builder.pageResult;
         itemList = builder.itemList;
     }
@@ -66,8 +63,8 @@ public class SingleBaseSearchResponse<V> extends BaseSearchResponse implements S
             return (T) this;
         }
 
-        public SingleBaseSearchResponse build() {
-            return new <T>SingleBaseSearchResponse(this);
+        public SingleBaseSearchResponse<V> build() {
+            return new SingleBaseSearchResponse<>(this);
         }
     }
 

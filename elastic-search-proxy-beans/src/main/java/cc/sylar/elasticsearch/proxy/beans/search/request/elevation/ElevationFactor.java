@@ -1,6 +1,6 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.elevation;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.SearchModelBuilder;
+import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchModelBuilder;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.AbstractSearchModel;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.score.ScriptScoreModel;
 

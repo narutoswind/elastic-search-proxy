@@ -1,4 +1,4 @@
-package cc.sylar.elasticsearch.proxy.beans.search.request;
+package cc.sylar.elasticsearch.proxy.beans.search.request.search;
 
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.sort.BaseSortModel;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.source.BaseSourceModel;

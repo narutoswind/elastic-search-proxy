@@ -1,8 +1,6 @@
 package cc.sylar.elasticsearch.proxy.beans.search.response.common;
 
 import cc.sylar.elasticsearch.proxy.beans.search.response.model.ResultWrapper;
-import com.ymm.cargo.es.api.response.model.ResultWrapper;
-import com.ymm.cargo.es.api.utils.TransformerUtils;
 
 import java.io.Serializable;
 import java.util.List;

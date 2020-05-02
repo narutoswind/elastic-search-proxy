@@ -1,6 +1,6 @@
 package cc.sylar.elasticsearch.proxy.beans.search.response.model;
 
-import com.ymm.cargo.es.api.base.model.PageInfo;
+import cc.sylar.elasticsearch.proxy.beans.search.request.page.PageInfo;
 
 /**
  * @author sylar
@@ -11,12 +11,9 @@ public class PageResult extends PageInfo {
 
     private Boolean hasNext;
 
-    public PageResult(){}
-
     private PageResult(ResultBuilder builder) {
-        setPageSize(builder.pageSize);
-        setPageNumber(builder.pageNumber);
-        setHasNext(builder.hasNext);
+        super(builder);
+        this.hasNext = getHasNext();
     }
 
     public static ResultBuilder newResultBuilder() {
@@ -27,34 +24,19 @@ public class PageResult extends PageInfo {
         return hasNext;
     }
 
-    public void setHasNext(Boolean hasNext) {
-        this.hasNext = hasNext;
-    }
+    public static final class ResultBuilder extends PageInfo.Builder{
+        private boolean hasNext;
 
-
-    public static final class ResultBuilder {
-        private Integer pageSize;
-        private Integer pageNumber;
-        private Boolean hasNext;
-
-        private ResultBuilder() {
+        ResultBuilder(){
+            super();
         }
 
-        public ResultBuilder pageSize(Integer val) {
-            pageSize = val;
-            return this;
-        }
-
-        public ResultBuilder pageNumber(Integer val) {
-            pageNumber = val;
-            return this;
-        }
-
-        public ResultBuilder hasNext(Boolean val) {
+        public ResultBuilder hasNext(boolean val) {
             hasNext = val;
             return this;
         }
 
+        @Override
         public PageResult build() {
             return new PageResult(this);
         }

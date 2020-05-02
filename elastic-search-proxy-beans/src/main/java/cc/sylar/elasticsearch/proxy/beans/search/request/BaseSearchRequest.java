@@ -2,6 +2,7 @@ package cc.sylar.elasticsearch.proxy.beans.search.request;
 
 import cc.sylar.elasticsearch.proxy.beans.search.request.elevation.ElevationFactor;
 import cc.sylar.elasticsearch.proxy.beans.search.request.page.PageInfo;
+import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchSourceModelBuilder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -21,10 +22,12 @@ public abstract class BaseSearchRequest implements Serializable {
      * 提权因子
      */
     private ElevationFactor elevationFactor;
+
     /**
      * 分页参数
      */
     private PageInfo pageInfo;
+
     /**
      * generate search key for multi search
      * This is used to be key which gets result from multi result
@@ -64,11 +67,12 @@ public abstract class BaseSearchRequest implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null||getClass() != o.getClass()) {
+        if (o == null
+                || getClass() != o.getClass()) {
             return false;
         }
         BaseSearchRequest that = (BaseSearchRequest) o;
-        return Objects.equals(searchSourceModelBuilder, that.searchSourceModelBuilder)&&
+        return Objects.equals(searchSourceModelBuilder, that.searchSourceModelBuilder) &&
                 Objects.equals(pageInfo, that.pageInfo);
     }
 

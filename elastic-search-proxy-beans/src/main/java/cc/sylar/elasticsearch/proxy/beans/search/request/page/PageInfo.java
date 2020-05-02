@@ -13,11 +13,9 @@ public class PageInfo implements Serializable {
 
     private Integer pageNumber;
 
-    public PageInfo(){}
-
-    private PageInfo(Builder builder) {
-        setPageSize(builder.pageSize);
-        setPageNumber(builder.pageNumber);
+    protected PageInfo(Builder builder) {
+        this.pageSize = builder.pageSize;
+        this.pageNumber = builder.pageNumber;
     }
 
     public static Builder newBuilder() {
@@ -28,17 +26,31 @@ public class PageInfo implements Serializable {
         return pageSize;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public Integer getPageNumber() {
         return pageNumber;
     }
 
-    public void setPageNumber(Integer pageNumber) {
-        this.pageNumber = pageNumber;
+    public static class Builder {
+        private Integer pageSize;
+        private Integer pageNumber;
+
+        protected Builder() {}
+
+        public Builder pageSize(Integer val) {
+            pageSize = val;
+            return this;
+        }
+
+        public Builder pageNumber(Integer val) {
+            pageNumber = val;
+            return this;
+        }
+
+        public PageInfo build() {
+            return new PageInfo(this);
+        }
     }
+
 
     @Override
     public String toString() {
@@ -48,27 +60,4 @@ public class PageInfo implements Serializable {
                 '}';
     }
 
-    public static final class Builder {
-        private Integer pageSize;
-        private Integer pageNumber;
-
-        private Builder() {
-        }
-
-        public Builder pageSize(Integer val) {
-            pageSize = val;
-            return this;
-        }
-
-        public Builder pageNumber(Long val) {
-            if(val!=null){
-                pageNumber = Integer.valueOf(val.toString());
-            }
-            return this;
-        }
-
-        public PageInfo build() {
-            return new PageInfo(this);
-        }
-    }
 }
