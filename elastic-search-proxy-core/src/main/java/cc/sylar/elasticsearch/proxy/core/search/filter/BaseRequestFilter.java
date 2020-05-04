@@ -2,6 +2,7 @@ package cc.sylar.elasticsearch.proxy.core.search.filter;
 
 
 import cc.sylar.elasticsearch.proxy.beans.context.SearchContext;
+import cc.sylar.elasticsearch.proxy.beans.exception.EsRecallException;
 
 /**
  * @author sylar

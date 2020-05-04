@@ -1,5 +1,8 @@
 package cc.sylar.elasticsearch.proxy.core.search.filter;
 
+import cc.sylar.elasticsearch.proxy.beans.context.SearchContext;
+import cc.sylar.elasticsearch.proxy.beans.exception.EsRecallException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +20,9 @@ public class RequestFilterChain {
         return this;
     }
 
-    public void filter(SearchBaseRequest searchBaseRequest) throws EsRecallException {
+    public void filter(SearchContext searchContext) throws EsRecallException {
         for (SearchRequestFilter searchRequestFilter : searchRequestFilterList) {
-            searchRequestFilter.filterRequest(searchBaseRequest);
+            searchRequestFilter.filterRequest(searchContext);
         }
     }
 }
