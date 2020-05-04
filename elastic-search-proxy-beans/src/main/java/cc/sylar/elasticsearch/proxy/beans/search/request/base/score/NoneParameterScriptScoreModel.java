@@ -1,23 +1,29 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.score;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.BaseQueryModel;
-
 /**
  * @author sylar
  * @Description:
  * @date 2020/4/28 11:27 下午
  */
-public class NoneParameterScriptScoreModel extends BaseQueryModel<Void> {
+public class NoneParameterScriptScoreModel extends BaseScriptScoreModel<Void> {
 
-    public NoneParameterScriptScoreModel(Builder<Void> builder) {
+    private NoneParameterScriptScoreModel(NoneParameterScriptScoreBuilder builder) {
         super(builder);
     }
 
-    public static class Builder extends BaseQueryModel.Builder<NoneParameterScriptScoreModel.Builder, Void> {
+    public static NoneParameterScriptScoreBuilder newBuilder() {
+        return new NoneParameterScriptScoreBuilder();
+    }
+
+    public static final class NoneParameterScriptScoreBuilder extends BaseScoreMemberBuilder<NoneParameterScriptScoreBuilder, Void> {
+
+        private NoneParameterScriptScoreBuilder() {
+        }
 
         @Override
-        public Builder value(Void val) {
-            return this;
+        public NoneParameterScriptScoreModel build() {
+            return new NoneParameterScriptScoreModel(this);
         }
     }
+
 }

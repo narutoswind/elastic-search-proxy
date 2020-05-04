@@ -38,12 +38,12 @@ public class SortExample {
          * sort script with ScriptParamsConverter, any custom object witch must be implement ScriptParamsConverter, to be converted a map
          * @see ScriptParamsConverter
          */
-        ParameterScriptSortModel baseScriptSortModel2 = ParameterScriptSortModel.newBuilder().scriptId("id").
+        /*ParameterScriptSortModel baseScriptSortModel2 = ParameterScriptSortModel.newBuilder().scriptId("id").
                 parameter(new ScriptParamsConverter() {
                     @Override
                     public Map<String, Object> get() {
                         return new HashMap<>();
                     }
-                }).sortModel(SortModel.ASC).build();
+                }).sortModel(SortModel.ASC).build();*/
     }
 }

@@ -1,6 +1,7 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.sort;
 
 import cc.sylar.elasticsearch.proxy.beans.common.ScriptParamsConverter;
+import cc.sylar.elasticsearch.proxy.beans.search.request.ScriptSetter;
 import com.sun.tools.javac.util.Assert;
 
 import java.util.Map;
@@ -12,43 +13,37 @@ import java.util.Map;
  * value -> Map<String,Object>：script params
  * @date 2019-02-25 11:29
  */
-public class ParameterScriptSortModel extends BaseScriptSortModel {
+public class ParameterScriptSortModel extends BaseScriptSortModel<Map<String, Object>> {
 
-    /**
-     * sort parameters map
-     */
-    private Map<String, Object> parameterMap;
-
-    <T extends ParameterScriptSortModel.BaseScriptSortMemberBuilder<T>> ParameterScriptSortModel(BaseScriptSortMemberBuilder<T> builder) {
+    private ParameterScriptSortModel(BaseScriptSortBuilder builder) {
         super(builder);
-        Assert.checkNull(builder.parameterMap, "BaseScriptSortModel must has one or more parameter, " +
+        Assert.checkNull(this.getScriptParameters(), "BaseScriptSortModel must has one or more parameter, " +
                 "if the script doesn't have parameters, you should use NoneParameterScriptModel.");
-        this.parameterMap = builder.parameterMap;
     }
 
     public static BaseScriptSortBuilder newBuilder() {
         return new BaseScriptSortBuilder();
     }
 
-    public static class BaseScriptSortBuilder extends BaseScriptSortMemberBuilder<BaseScriptSortBuilder> {
-        private BaseScriptSortBuilder() {
-        }
+    @Override
+    public Map<String, Object> getScriptParameters() {
+        return super.getValue();
     }
 
-    static class BaseScriptSortMemberBuilder<T extends ParameterScriptSortModel.BaseScriptSortMemberBuilder<T>> extends
-            BaseScriptSortModel.BaseScriptSortMemberBuilder<T> {
+    public static final class BaseScriptSortBuilder extends BaseScriptSortModel.BaseScriptSortMemberBuilder<BaseScriptSortBuilder,
+            Map<String, Object>> implements ScriptSetter {
 
-        private Map<String, Object> parameterMap;
-
-        public T parameter(Map<String, Object> parameterMap) {
-            this.parameterMap = parameterMap;
-            return (T) this;
+        private BaseScriptSortBuilder() {
         }
 
-        public T parameter(ScriptParamsConverter scriptParamsConverter) {
-            Assert.checkNull(scriptParamsConverter, "ScriptParamsConverter must not be null!");
-            this.parameterMap = scriptParamsConverter.get();
-            return (T) this;
+        @Override
+        public BaseScriptSortBuilder parameter(Map<String, Object> parameterMap) {
+            return super.value(parameterMap);
+        }
+
+        @Override
+        public BaseScriptSortBuilder parameter(ScriptParamsConverter scriptParamsConverter) {
+            return (BaseScriptSortBuilder) ScriptSetter.super.parameter(scriptParamsConverter);
         }
 
         @Override

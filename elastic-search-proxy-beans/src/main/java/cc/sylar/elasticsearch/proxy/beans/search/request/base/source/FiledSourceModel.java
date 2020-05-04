@@ -1,13 +1,15 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.source;
 
+import cc.sylar.elasticsearch.proxy.beans.search.request.base.BaseQueryModel;
+
 /**
  * @author sylar
  * @Description:
  * @date 2020/5/2 1:07 下午
  */
-public class FiledSourceModel extends BaseSourceModel {
+public class FiledSourceModel extends BaseSourceModel<Void>  {
 
-    protected <T extends FiledSourceMemberBuilder<T>> FiledSourceModel(FiledSourceMemberBuilder<T> builder) {
+    private FiledSourceModel(FiledSourceBuilder builder) {
         super(builder);
     }
 
@@ -15,19 +17,18 @@ public class FiledSourceModel extends BaseSourceModel {
         return new FiledSourceBuilder();
     }
 
-
-    public static final class FiledSourceBuilder extends FiledSourceMemberBuilder<FiledSourceBuilder> {
-        private FiledSourceBuilder() {
-        }
+    @Override
+    public String getField() {
+        return super.getName();
     }
 
-    private static class FiledSourceMemberBuilder<T extends FiledSourceMemberBuilder<T>> extends BaseSourceModel.MemberBuilder<T> {
+    public static final class FiledSourceBuilder extends BaseQueryModel.BaseMemberBuilder<FiledSourceBuilder, Void> {
 
-        private FiledSourceMemberBuilder() {}
-
-        public T field(String field) {
+        private FiledSourceBuilder() {
+        }
+        public FiledSourceBuilder field(String field) {
             super.name(field);
-            return (T) this;
+            return self();
         }
 
         @Override

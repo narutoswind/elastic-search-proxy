@@ -1,3 +1,4 @@
+/*
 package cc.sylar.elasticsearch.proxy.beans.client;
 
 import org.apache.http.HttpHost;
@@ -12,28 +13,34 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+*/
 /**
  * @author sylar
  * @Description: es rest client
  * @date 2018/10/22 6:32 PM
- */
-public class ElasticClient {
-    /**
+ *//*
+
+public class ElasticClientContainer {
+    */
+/**
      * name of es cluster
-     */
+     *//*
+
     private final String clusterName;
 
-    /**
+    */
+/**
      *
-     */
+     *//*
+
     private final RestHighLevelClient restHighLevelClient;
 
 
-    public ElasticClient(String clusterName, String host, Integer port) {
+    public ElasticClientContainer(String clusterName, String host, Integer port) {
         this(clusterName, host, port, null);
     }
 
-    public ElasticClient(String clusterName, String host, Integer port, Consumer<Node> failureListener) {
+    public ElasticClientContainer(String clusterName, String host, Integer port, Consumer<Node> failureListener) {
         this.clusterName = clusterName;
         List<HttpHost> addressList = Stream.of(host.split(",")).map(singleHost ->
                 new HttpHost(singleHost, port)).collect(Collectors.toList());
@@ -49,20 +56,24 @@ public class ElasticClient {
         this.restHighLevelClient = new RestHighLevelClient(builder);
     }
 
-    /**
+    */
+/**
      * rest client which requests with http
      *
      * @return
-     */
+     *//*
+
     public RestHighLevelClient getRestClient() {
         return restHighLevelClient;
     }
 
-    /**
+    */
+/**
      * getter
      *
      * @return
-     */
+     *//*
+
     protected String getClusterName() {
         return clusterName;
     }
@@ -77,3 +88,4 @@ public class ElasticClient {
         }
     }
 }
+*/
