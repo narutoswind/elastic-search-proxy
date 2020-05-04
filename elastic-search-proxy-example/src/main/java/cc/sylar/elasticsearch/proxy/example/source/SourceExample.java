@@ -1,4 +1,4 @@
-package cc.sylar.elasticsearch.proxy.example.sort;
+package cc.sylar.elasticsearch.proxy.example.source;
 
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.source.FiledSourceModel;
 

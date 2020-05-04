@@ -2,7 +2,7 @@ package cc.sylar.elasticsearch.proxy.beans.search.request.elevation;
 
 import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchModelBuilder;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.AbstractSearchModel;
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.score.ScriptScoreModel;
+import cc.sylar.elasticsearch.proxy.beans.search.request.base.score.ParameterScriptScoreModel;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map;
 public class ElevationFactor implements Serializable {
     /**
      * script score should use BaseScriptScoreModel
-     * @see ScriptScoreModel
+     * @see ParameterScriptScoreModel
      * filter query boost use AbstractSearchModel
      * @see AbstractSearchModel
      */

@@ -1,7 +1,5 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.BaseModel;
-
 import java.util.Objects;
 
 /**
@@ -9,42 +7,37 @@ import java.util.Objects;
  * @Description: 匹配过滤
  * @date 2018/10/31 5:09 PM
  */
-public class BaseQueryModel<V> extends BaseModel {
+public abstract class BaseQueryModel<V> extends BaseModel {
     /**
      * value
      */
     private V value;
 
-    protected <T extends MemberBuilder> BaseQueryModel(MemberBuilder<T, V> builder) {
+    protected <T extends BaseMemberBuilder> BaseQueryModel(BaseMemberBuilder<T, V> builder) {
         super(builder.name);
         this.value = builder.value;
     }
 
-    public V getValue() {
+    protected V getValue() {
         return value;
     }
 
+    protected abstract static class BaseMemberBuilder<T extends BaseMemberBuilder, V> {
 
-    public static class Builder<V>  extends MemberBuilder<Builder, V>{
+        private String name;
 
-    }
+        private V value;
 
-    protected static class MemberBuilder<T extends MemberBuilder, V> {
-
-        public String name;
-
-        public V value;
-
-        public T name(String val) {
-            name = val;
+        protected T name(String name) {
+            this.name = name;
             return self();
         }
 
-        public T value(V val) {
-            value = val;
+        protected T value(V value) {
+            this.value = value;
             return self();
         }
-        
+
         /**
          * 返回实际 builder 实例
          * @return
@@ -53,9 +46,11 @@ public class BaseQueryModel<V> extends BaseModel {
             return (T) this;
         }
 
-        public BaseQueryModel build() {
-            return new BaseQueryModel<>(this);
-        }
+        /**
+         *
+         * @return
+         */
+        public abstract BaseQueryModel build();
     }
 
     @Override

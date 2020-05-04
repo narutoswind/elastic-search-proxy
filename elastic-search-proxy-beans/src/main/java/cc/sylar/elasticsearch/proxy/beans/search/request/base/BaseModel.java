@@ -1,4 +1,4 @@
-package cc.sylar.elasticsearch.proxy.beans.search.request;
+package cc.sylar.elasticsearch.proxy.beans.search.request.base;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,12 +19,8 @@ public abstract class BaseModel implements Serializable {
         this.name = name;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override

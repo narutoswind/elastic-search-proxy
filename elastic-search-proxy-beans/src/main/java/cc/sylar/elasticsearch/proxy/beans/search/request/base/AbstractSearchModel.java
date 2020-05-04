@@ -1,7 +1,6 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base;
 
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.BaseModel;
 import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchModelBuilder;
 import org.apache.commons.lang.StringUtils;
 

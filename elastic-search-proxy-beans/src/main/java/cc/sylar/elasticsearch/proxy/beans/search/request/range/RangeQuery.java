@@ -42,7 +42,7 @@ public class RangeQuery<T> implements Serializable {
     }
 
     public static <T> Builder<T> newBuilder() {
-        return new <T>Builder();
+        return new Builder<>();
     }
 
     public T getGteFrom() {
@@ -90,28 +90,28 @@ public class RangeQuery<T> implements Serializable {
         public Builder() {
         }
 
-        public Builder gteFrom(T val) {
+        public Builder<T> gteFrom(T val) {
             gteFrom = val;
             return this;
         }
 
-        public Builder gtFrom(T val) {
+        public Builder<T> gtFrom(T val) {
             gtFrom = val;
             return this;
         }
 
-        public Builder lteTo(T val) {
+        public Builder<T> lteTo(T val) {
             lteTo = val;
             return this;
         }
 
-        public Builder ltTo(T val) {
+        public Builder<T> ltTo(T val) {
             ltTo = val;
             return this;
         }
 
         public RangeQuery<T> build() {
-            return new RangeQuery(this);
+            return new RangeQuery<>(this);
         }
     }
 

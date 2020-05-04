@@ -1,6 +1,5 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.fuction;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.sort.BaseScriptSortModel;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.sort.BaseSortModel;
 
 /**
@@ -18,7 +17,7 @@ public interface Sort {
      * use script sort,the field name
      * @see
      * if script field constants don't contain it.this would be used to script id
-     * @see BaseScriptSortModel
+     * @see cc.sylar.elasticsearch.proxy.beans.search.request.base.sort.BaseScriptSortModel
      *
      * @param baseSortModel
      * @return
