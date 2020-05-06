@@ -1,7 +1,7 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.sort;
 
 import cc.sylar.elasticsearch.proxy.beans.common.ScriptParamsConverter;
-import cc.sylar.elasticsearch.proxy.beans.search.request.ScriptSetter;
+import cc.sylar.elasticsearch.proxy.beans.search.request.fuction.ScriptSetter;
 import com.sun.tools.javac.util.Assert;
 
 import java.util.Map;

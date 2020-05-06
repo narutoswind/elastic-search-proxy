@@ -1,6 +1,6 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.source;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.FieldGetter;
+import cc.sylar.elasticsearch.proxy.beans.search.request.fuction.FieldGetter;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.BaseQueryModel;
 
 /**

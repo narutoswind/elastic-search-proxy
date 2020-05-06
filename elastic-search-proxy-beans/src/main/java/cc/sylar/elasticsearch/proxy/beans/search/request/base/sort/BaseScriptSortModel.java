@@ -1,7 +1,7 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base.sort;
 
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.ScriptGetter;
+import cc.sylar.elasticsearch.proxy.beans.search.request.fuction.ScriptGetter;
 
 /**
  * @author sylar
