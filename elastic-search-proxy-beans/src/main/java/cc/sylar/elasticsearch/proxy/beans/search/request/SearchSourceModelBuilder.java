@@ -1,4 +1,4 @@
-package cc.sylar.elasticsearch.proxy.beans.search.request.search;
+package cc.sylar.elasticsearch.proxy.beans.search.request;
 
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.sort.BaseSortModel;
 import cc.sylar.elasticsearch.proxy.beans.search.request.base.source.BaseSourceModel;
@@ -18,9 +18,10 @@ import java.util.stream.Collectors;
  * @date 2018/11/1 10:49 AM
  */
 public class SearchSourceModelBuilder implements Sort, Source, Serializable {
-
-    private SearchModelBuilder searchModelBuilder;
-
+    /**
+     * query
+     */
+    private QueryModelBuilder queryModelBuilder;
     /**
      * sort model
      */
@@ -30,8 +31,8 @@ public class SearchSourceModelBuilder implements Sort, Source, Serializable {
      */
     private List<BaseSourceModel> sourceModelList = new ArrayList<>();
 
-    private SearchSourceModelBuilder searchModel(SearchModelBuilder searchModelBuilder){
-        this.searchModelBuilder = searchModelBuilder;
+    private SearchSourceModelBuilder searchModel(QueryModelBuilder queryModelBuilder){
+        this.queryModelBuilder = queryModelBuilder;
         return this;
     }
 
@@ -62,8 +63,8 @@ public class SearchSourceModelBuilder implements Sort, Source, Serializable {
         return this;
     }
 
-    public SearchModelBuilder getSearchModelBuilder() {
-        return searchModelBuilder;
+    public QueryModelBuilder getQueryModelBuilder() {
+        return queryModelBuilder;
     }
 
     public List<BaseSortModel> getSortModelList() {
@@ -77,7 +78,7 @@ public class SearchSourceModelBuilder implements Sort, Source, Serializable {
     @Override
     public String toString() {
         return "SearchSourceModelBuilder{" +
-                "searchModelBuilder=" + searchModelBuilder +
+                "queryModelBuilder=" + queryModelBuilder +
                 ", sortModelList=" + sortModelList +
                 ", sourceModelList=" + sourceModelList +
                 '}';

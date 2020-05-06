@@ -1,28 +1,53 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.base;
 
+import cc.sylar.elasticsearch.proxy.beans.search.request.QueryModelBuilder;
+import cc.sylar.elasticsearch.proxy.beans.search.request.fuction.FieldGetter;
+
 /**
  * @author sylar
  * @Description:
  * @date 2020/5/4 8:36 下午
  */
-public class QueryModel<V> extends BaseQueryModel<V> {
+// TODO: 2020/5/5 add query type，match，term，fuzzy... 
+public class QueryModel<V> extends BaseQueryModel<V> implements FieldGetter {
+    /**
+     * inner search model
+     * nested search：sub query based on current query conditions
+     */
+    private QueryModelBuilder innerSearch;
 
-    private <T extends BaseMemberBuilder<T,V>> QueryModel(BaseMemberBuilder<T, V> builder) {
+    private  QueryModel(Builder<V> builder) {
         super(builder);
+        this.innerSearch = builder.searchModelBuilder;
     }
 
     public static <V> Builder<V> newBuilder() {
         return new Builder<>();
     }
 
+    @Override
+    public String getField() {
+        return super.getName();
+    }
+
+    public QueryModelBuilder getInnerSearch() {
+        return innerSearch;
+    }
+
     public static final class Builder<V>  extends BaseMemberBuilder<Builder<V>, V> {
+
+        private QueryModelBuilder searchModelBuilder;
 
         private Builder() {
         }
 
-        @Override
-        public Builder<V> name(String name) {
-            return super.name(name);
+        public Builder<V> innerSeach(QueryModelBuilder innerSearch) {
+            this.searchModelBuilder = innerSearch;
+            return this;
+        }
+
+        public Builder<V> field(String field) {
+            return super.name(field);
         }
 
         @Override

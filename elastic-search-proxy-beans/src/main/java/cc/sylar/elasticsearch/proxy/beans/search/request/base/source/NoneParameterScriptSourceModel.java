@@ -16,6 +16,10 @@ public class NoneParameterScriptSourceModel extends BaseScriptSourceModel<Void> 
         return null;
     }
 
+    public static NoneParameterScriptSourceBuilder newBuilder() {
+        return new NoneParameterScriptSourceBuilder();
+    }
+
     public static final class NoneParameterScriptSourceBuilder extends BaseScriptSourceMemberBuilder<NoneParameterScriptSourceBuilder, Void> {
 
         private NoneParameterScriptSourceBuilder() {

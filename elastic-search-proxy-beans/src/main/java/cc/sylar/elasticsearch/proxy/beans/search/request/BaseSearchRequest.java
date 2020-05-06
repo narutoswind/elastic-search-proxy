@@ -1,8 +1,8 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request;
 
+import cc.sylar.elasticsearch.proxy.beans.context.SearchContext;
 import cc.sylar.elasticsearch.proxy.beans.search.request.elevation.ElevationFactor;
 import cc.sylar.elasticsearch.proxy.beans.search.request.page.PageInfo;
-import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchSourceModelBuilder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import java.util.Objects;
  * @Description:
  * @date 2018/11/15 11:09 AM
  */
-public abstract class BaseSearchRequest implements Serializable {
+public class BaseSearchRequest implements Serializable {
     /**
      * 搜索参数
      */
@@ -36,6 +36,10 @@ public abstract class BaseSearchRequest implements Serializable {
      */
     public String generateSearchKey() {
         return hashCode() + "";
+    }
+
+    public SearchContext generateContext() {
+        return new SearchContext(this);
     }
 
     public SearchSourceModelBuilder getSearchSourceModelBuilder() {

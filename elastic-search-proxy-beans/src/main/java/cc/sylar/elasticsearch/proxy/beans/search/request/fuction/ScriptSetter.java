@@ -1,4 +1,4 @@
-package cc.sylar.elasticsearch.proxy.beans.search.request;
+package cc.sylar.elasticsearch.proxy.beans.search.request.fuction;
 
 import cc.sylar.elasticsearch.proxy.beans.common.ScriptParamsConverter;
 import com.sun.tools.javac.util.Assert;

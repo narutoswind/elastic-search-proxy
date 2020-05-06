@@ -1,0 +1,42 @@
+
+elastic-search-proxy-beans: DSL封装
+---------------------------------------
+elastic-search-proxy-core
+依赖 elastic-search-proxy-beans
+     elastic-search-proxy-limit
+     elastic-search-proxy-route
+
+ DSL请求->路由选集群->限流->查询
+            ^
+            |
+ 封装请求->DSL转换
+
+入口：
+ClientContainer.query(String dsl);
+
+ClientContainer.query(String dsl, Map<String, Object> properties);
+
+定义：
+
+ClientContainer（List<Properties> properties） #autoconfigure(on bean restClient)
+
+client, RateLimit, List<route>, #重试机制
+
+---------------------------------------
+
+elastic-search-proxy-limit：限流配置，实现
+
+RateLimit
+
+limit = 10;
+---------------------------------------
+elastic-search-proxy-route：自定义路由，默认实现（第一个集群）
+
+集群：探活（维护集群信息）
+     状态变更事件通知
+
+Route - Predicate
+
+useriD/3=1 ,"demo.class route"
+---------------------------------------
+elastic-search-proxy-autoconfigure：spring boot自动装配

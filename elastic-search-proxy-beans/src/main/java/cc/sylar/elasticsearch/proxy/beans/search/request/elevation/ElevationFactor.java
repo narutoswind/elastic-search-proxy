@@ -1,8 +1,7 @@
 package cc.sylar.elasticsearch.proxy.beans.search.request.elevation;
 
-import cc.sylar.elasticsearch.proxy.beans.search.request.search.SearchModelBuilder;
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.AbstractSearchModel;
-import cc.sylar.elasticsearch.proxy.beans.search.request.base.score.ParameterScriptScoreModel;
+import cc.sylar.elasticsearch.proxy.beans.search.request.QueryModelBuilder;
+import cc.sylar.elasticsearch.proxy.beans.search.request.base.score.BaseScriptScoreModel;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -15,16 +14,19 @@ import java.util.Map;
 public class ElevationFactor implements Serializable {
     /**
      * script score should use BaseScriptScoreModel
-     * @see ParameterScriptScoreModel
-     * filter query boost use AbstractSearchModel
-     * @see AbstractSearchModel
+     * @see BaseScriptScoreModel
      */
-    private Map<AbstractSearchModel, Double> queryElevationModel;
+    private Map<BaseScriptScoreModel, Double> scoreElevationModel;
+    /**
+     * filter query boost use QueryModelBuilder
+     * @see QueryModelBuilder
+     */
+    private Map<QueryModelBuilder, Double> queryElevationModel;
 
     /**
-     * combination query, support must must_not should query
+     * combination query, support and not or query
      */
-    private Map<SearchModelBuilder, Double> combinationElevationModel;
+    private Map<QueryModelBuilder, Double> combinationElevationModel;
 
     /**
      * multiply scores are multiplied (default)
@@ -37,45 +39,37 @@ public class ElevationFactor implements Serializable {
 
     private String boostMode;
 
-
-    public ElevationFactor(Map<SearchModelBuilder, Double> combinationElevationModel, CombineFunction scoreMode) {
-        this.combinationElevationModel = combinationElevationModel;
-        this.scoreMode = scoreMode.name();
+    private ElevationFactor(Builder builder) {
+        scoreElevationModel = builder.scoreElevationModel;
+        queryElevationModel = builder.queryElevationModel;
+        combinationElevationModel = builder.combinationElevationModel;
+        scoreMode = builder.scoreMode;
+        boostMode = builder.boostMode;
     }
 
-
-    public ElevationFactor(Map<AbstractSearchModel, Double> queryElevationModel, Map<SearchModelBuilder, Double> combinationElevationModel, String scoreMode, String boostMode) {
-        this.queryElevationModel = queryElevationModel;
-        this.combinationElevationModel = combinationElevationModel;
-        this.scoreMode = scoreMode;
-        this.boostMode = boostMode;
-    }
-
-    public ElevationFactor(Map<AbstractSearchModel, Double> queryElevationModel, String scoreMode, String boostMode) {
-        this.queryElevationModel = queryElevationModel;
-        this.scoreMode = scoreMode;
-        this.boostMode = boostMode;
-    }
-
-    public ElevationFactor(Map<AbstractSearchModel, Double> elevationModel, CombineFunction scoreMode, CombineFunction boostMode) {
-        this.elevationModel = elevationModel;
-        this.scoreMode = scoreMode.name();
-        this.boostMode = boostMode.name();
-    }
-
-    public ElevationFactor() {
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
     public boolean isEmptyModel() {
-        return elevationModel == null || elevationModel.isEmpty();
+        return (queryElevationModel == null || queryElevationModel.isEmpty())
+                && (scoreElevationModel == null || scoreElevationModel.isEmpty());
     }
 
     public boolean isEmptyCombinationElevationModel() {
         return combinationElevationModel == null || combinationElevationModel.isEmpty();
     }
 
-    public Map<AbstractSearchModel, Double> getElevationModel() {
-        return elevationModel;
+    public Map<BaseScriptScoreModel, Double> getScoreElevationModel() {
+        return scoreElevationModel;
+    }
+
+    public Map<QueryModelBuilder, Double> getQueryElevationModel() {
+        return queryElevationModel;
+    }
+
+    public Map<QueryModelBuilder, Double> getCombinationElevationModel() {
+        return combinationElevationModel;
     }
 
     public String getScoreMode() {
@@ -86,25 +80,54 @@ public class ElevationFactor implements Serializable {
         return boostMode;
     }
 
-    public void setBoostMode(String boostMode) {
-        this.boostMode = boostMode;
-    }
 
-    public Map<SearchModelBuilder, Double> getCombinationElevationModel() {
-        return combinationElevationModel;
-    }
+    public static final class Builder {
+        private Map<BaseScriptScoreModel, Double> scoreElevationModel;
+        private Map<QueryModelBuilder, Double> queryElevationModel;
+        private Map<QueryModelBuilder, Double> combinationElevationModel;
+        private String scoreMode;
+        private String boostMode;
 
-    public void setCombinationElevationModel(Map<SearchModelBuilder, Double> combinationElevationModel) {
-        this.combinationElevationModel = combinationElevationModel;
-    }
+        private Builder() {
+        }
 
-    @Override
-    public String toString() {
-        return "ElevationFactor{" +
-                "elevationModel=" + elevationModel +
-                ", combinationElevationModel=" + combinationElevationModel +
-                ", scoreMode='" + scoreMode + '\'' +
-                ", boostMode='" + boostMode + '\'' +
-                '}';
+        public Builder scoreElevationModel(Map<BaseScriptScoreModel, Double> score) {
+            this.scoreElevationModel = score;
+            return this;
+        }
+
+        public Builder queryElevationModel(Map<QueryModelBuilder, Double> query) {
+            this.queryElevationModel = query;
+            return this;
+        }
+
+        public Builder combinationElevationModel(Map<QueryModelBuilder, Double> combination) {
+            this.combinationElevationModel = combination;
+            return this;
+        }
+
+        public Builder scoreMode(String scoreMode) {
+            this.scoreMode = scoreMode;
+            return this;
+        }
+
+        public Builder scoreMode(CombineFunction scoreMode) {
+            this.scoreMode = scoreMode.name();
+            return this;
+        }
+
+        public Builder boostMode(String boostMode) {
+            this.boostMode = boostMode;
+            return this;
+        }
+
+        public Builder boostMode(CombineFunction boostMode) {
+            this.boostMode = boostMode.name();
+            return this;
+        }
+
+        public ElevationFactor build() {
+            return new ElevationFactor(this);
+        }
     }
 }
