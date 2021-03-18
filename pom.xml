@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <elsatic.search.version>6.4.2</elsatic.search.version>
+        <elsatic.search.version>7.11.2</elsatic.search.version>
     </properties>
 
     <dependencyManagement>
